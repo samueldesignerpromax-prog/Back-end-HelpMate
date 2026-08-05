@@ -1,0 +1,12 @@
+const mongoose = require('mongoose');
+
+const MessageSchema = new mongoose.Schema({
+  ticket: { type: mongoose.Schema.Types.ObjectId, ref: 'Ticket', required: true },
+  sender: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  text: { type: String, required: true },
+  isRead: { type: Boolean, default: false },
+  attachments: [{ type: String }], // URLs do Cloudinary
+  createdAt: { type: Date, default: Date.now },
+});
+
+module.exports = mongoose.model('Message', MessageSchema);
